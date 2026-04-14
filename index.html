@@ -68,9 +68,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:16px}
 
 /* ─── GRIDS ─── */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-.g-story{display:grid;grid-template-columns:340px 1fr;gap:20px}
+.g-story{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
 .g-insight{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 
 /* ─── NARRATIVE CALLOUT ─── */
@@ -172,7 +172,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .demo-list{display:flex;flex-direction:column;gap:10px}
 .demo-row{display:flex;align-items:center;gap:12px}
 .demo-label{width:120px;font-size:13px;font-weight:500;color:var(--text2);text-align:right;flex-shrink:0}
-.demo-track{flex:1;height:28px;background:#F0EFEC;border-radius:6px;display:flex;overflow:hidden}
+.demo-track{flex:1;height:28px;background:#F0EFEC;border-radius:6px;display:flex;align-items:center}
 .demo-fill{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;transition:width .8s cubic-bezier(.25,.46,.45,.94)}
 
 @media(max-width:1024px){
@@ -421,7 +421,7 @@ function render(){
   const tGroups=gr(tData,'_tb');
   let tHtml='';
   tOrder.forEach(b=>{
-    const g=tGroups[b]||[];const r=cr(g);const h=Math.max(r*100*3.2,8);const c=col(r);
+    const g=tGroups[b]||[];const r=cr(g);const h=Math.max(r*100*1.8,8);const c=col(r);
     const ch=g.filter(x=>x.Churn==='Yes').length;
     tHtml+=`<div class="vbar-col"><div class="vbar-pct" style="color:${c}">${(r*100).toFixed(1)}%</div><div class="tip" style="width:100%"><div class="vbar-bar" style="height:${h}px;background:${c}"></div><div class="tip-box">${b}: ${ch} churned of ${g.length}</div></div><div class="vbar-label">${b}</div></div>`;
   });
@@ -470,7 +470,7 @@ function render(){
   const chGroups=gr(chData,'_cb');
   let chHtml='';
   chOrder.forEach(b=>{
-    const g=chGroups[b]||[];const r=cr(g);const h=Math.max(r*100*3.5,8);const c=col(r);
+    const g=chGroups[b]||[];const r=cr(g);const h=Math.max(r*100*2,8);const c=col(r);
     const ch=g.filter(x=>x.Churn==='Yes').length;
     chHtml+=`<div class="vbar-col"><div class="vbar-pct" style="color:${c}">${(r*100).toFixed(0)}%</div><div class="tip" style="width:100%"><div class="vbar-bar" style="height:${h}px;background:${c}"></div><div class="tip-box">${b}: ${ch} of ${g.length} churned</div></div><div class="vbar-label">${b}</div></div>`;
   });
@@ -485,7 +485,8 @@ function render(){
   let dHtml='';
   demos.forEach(d=>{
     const sub=data.filter(r=>r[d.k]===d.v);const r=cr(sub);const w=Math.max(r*100,2);const c=col(r);
-    dHtml+=`<div class="demo-row"><div class="demo-label">${d.l}</div><div class="demo-track"><div class="demo-fill" style="width:${w}%;background:${c}">${(r*100).toFixed(1)}%</div></div></div>`;
+    const inside=r>=.18;
+    dHtml+=`<div class="demo-row"><div class="demo-label">${d.l}</div><div class="demo-track"><div class="demo-fill" style="width:${w}%;background:${c}">${inside?(r*100).toFixed(1)+'%':''}</div>${!inside?`<span style="font-size:12px;font-weight:700;color:${c};margin-left:8px;white-space:nowrap">${(r*100).toFixed(1)}%</span>`:''}</div></div>`;
   });
   document.getElementById('chartDemo').innerHTML=dHtml;
 
