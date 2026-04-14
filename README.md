@@ -2,7 +2,7 @@
 
 A portfolio-grade interactive dashboard analyzing customer churn patterns for a fictional telecom company. Built to surface actionable business insights and identify high-risk customer segments.
 
-**[🔗 View Live Dashboard](https://YOUR_USERNAME.github.io/telco-customer-churn-dashboard/)**
+**[🔗 View Live Dashboard](https://rhahavy.github.io/telco-customer-churn-analysis/)**
 
 ---
 
