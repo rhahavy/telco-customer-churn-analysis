@@ -4,8 +4,6 @@ A portfolio-grade interactive dashboard analyzing customer churn patterns for a 
 
 **[🔗 View Live Dashboard](https://YOUR_USERNAME.github.io/telco-customer-churn-dashboard/)**
 
-![Dashboard Preview](preview.png)
-
 ---
 
 ## Business Problem
